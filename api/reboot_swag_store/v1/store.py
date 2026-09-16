@@ -1,10 +1,12 @@
 from reboot.api import (
     API,
     UI,
+    Exclusive,
     Field,
     Methods,
     Model,
     Reader,
+    Shared,
     Tool,
     Transaction,
     Type,
@@ -243,6 +245,7 @@ api = API(
                 mcp=Tool(),
             ),
             create_cart=Transaction(
+                mode=Shared(),
                 request=None,
                 response=CreateCartResponse,
                 description="Create a new shopping cart. "
@@ -296,6 +299,7 @@ api = API(
                 mcp=Tool(),
             ),
             checkout=Transaction(
+                mode=Exclusive(),
                 request=CheckoutRequest,
                 response=CheckoutResponse,
                 errors=[CartEmpty, InvalidCoupon],

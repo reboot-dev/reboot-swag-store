@@ -17,9 +17,9 @@ For the impatient:
 
 ## Overview
 
-The Reboot Store is an AI Chat App (MCP App) that lets users browse
-products, manage a shopping cart, and check out — all through an AI
-chat interface. It exposes three interactive UIs:
+The Reboot Store is an MCP UI that lets users browse
+products, manage a shopping cart, and check out — all from inside an MCP
+client. It exposes three interactive UIs:
 
 - **Store** — a product grid showing the products the model
   picked for the current request, with color and size selection
@@ -223,15 +223,15 @@ codes for `123456`):
 ## Running the tests
 
 ```sh
-cd backend && uv run pytest
+uv run pytest
 ```
 
 The suite has two files:
 
-- `backend/tests/printful_helpers_test.py` — pure-function
+- `tests/printful_helpers_test.py` — pure-function
   tests for the variant-parsing helper. Fast, no Reboot
   runtime.
-- `backend/tests/store_servicer_test.py` — integration tests
+- `tests/store_servicer_test.py` — integration tests
   that spin up an in-process Reboot, set the admin-key env
   var to a known test value, and swap `OrderServicer.fulfill`
   for a no-op so tests don't hit Printful. Covers cart
