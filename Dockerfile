@@ -9,7 +9,7 @@
 #      and TypeScript bindings from
 #      `api/reboot_swag_store/v1/store.py`.
 # ---------------------------------------------------------------------------
-FROM ghcr.io/reboot-dev/reboot-base:1.6.0 AS backend
+FROM ghcr.io/reboot-dev/reboot-base:1.7.1 AS backend
 
 WORKDIR /app
 
@@ -35,13 +35,13 @@ RUN rbt generate
 # ---------------------------------------------------------------------------
 # Stage 2: build the web UIs.
 #
-# `rbt serve` serves MCP UI resources from
+# `rbt serve` serves MCP App resources from
 # `frontend/dist/mcp/<name>/index.html` (see `reboot.mcp.ui.ui_html`),
 # so we need pre-built artifacts in the final image. The web UIs
 # import the generated TS bindings at `frontend/api/`, which we pull
 # from the backend stage above.
 # ---------------------------------------------------------------------------
-FROM node:20-alpine AS web-build
+FROM node:26-alpine AS web-build
 
 WORKDIR /app/frontend
 
